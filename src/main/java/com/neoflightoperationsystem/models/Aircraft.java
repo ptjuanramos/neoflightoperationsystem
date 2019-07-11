@@ -39,5 +39,75 @@ public class Aircraft {
     @ManyToOne
     private Subfleet subfleet;
 
+    private String name;
+    private String icao;
+    private String registration;
+    private String hexCode;
+    private Airport currentAirport;
+    private AircraftStatus aircraftStatus;
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Subfleet getSubfleet() {
+        return subfleet;
+    }
+
+    public void setSubfleet(Subfleet subfleet) {
+        this.subfleet = subfleet;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIcao() {
+        return icao;
+    }
+
+    public void setIcao(String icao) {
+        this.icao = icao;
+    }
+
+    public String getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(String registration) {
+        this.registration = registration;
+    }
+
+    public String getHexCode() {
+        return hexCode;
+    }
+
+    public void setHexCode(String hexCode) {
+        this.hexCode = hexCode;
+    }
+
+    public Airport getCurrentAirport() {
+        return currentAirport;
+    }
+
+    public void setCurrentAirport(Airport currentAirport) {
+        this.currentAirport = currentAirport;
+    }
+
+    public AircraftStatus getAircraftStatus() {
+        return aircraftStatus;
+    }
+
+    public void setAircraftStatus(AircraftStatus aircraftStatus) {
+        this.aircraftStatus = aircraftStatus;
+    }
 }
+

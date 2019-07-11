@@ -25,34 +25,30 @@
 package com.neoflightoperationsystem.controllers;
 
 import com.neoflightoperationsystem.models.ServiceResult;
-import com.neoflightoperationsystem.models.User;
-import com.neoflightoperationsystem.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-@RestController
-public class UserController implements BaseCrudControllerInterface<User> {
+public interface BaseCrudControllerInterface<T> {
 
-    @Autowired
-    private UserService userService;
+    /**
+     *
+     * @return
+     */
+    T create(T newData);
 
-    @PostMapping("/user/create")
-    public User create(User newUser) {
-        return userService.addNewUser(newUser);
-    }
+    /**
+     *
+     * @return
+     */
+    T get(String id);
 
-    @GetMapping("/user/{userId}")
-    public User get(@PathVariable String userId) {
-        return userService.getUserById(userId);
-    }
+    /**
+     *
+     * @return
+     */
+    ServiceResult delete(String id);
 
-    @PostMapping("/user/delete/{userId}")
-    public ServiceResult delete(@PathVariable String userId) {
-        return userService.removeUserById(userId);
-    }
-
-    @PostMapping("/user/update")
-    public User update(@RequestBody User newUserData) {
-        return null;
-    }
+    /**
+     *
+     * @return
+     */
+    T update(T data);
 }

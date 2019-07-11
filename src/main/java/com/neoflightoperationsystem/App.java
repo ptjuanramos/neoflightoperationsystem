@@ -22,37 +22,16 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystem;
 
-import com.neoflightoperationsystem.models.ServiceResult;
-import com.neoflightoperationsystem.models.User;
-import com.neoflightoperationsystem.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
-@RestController
-public class UserController implements BaseCrudControllerInterface<User> {
+@SpringBootApplication
+public class App {
 
-    @Autowired
-    private UserService userService;
-
-    @PostMapping("/user/create")
-    public User create(User newUser) {
-        return userService.addNewUser(newUser);
-    }
-
-    @GetMapping("/user/{userId}")
-    public User get(@PathVariable String userId) {
-        return userService.getUserById(userId);
-    }
-
-    @PostMapping("/user/delete/{userId}")
-    public ServiceResult delete(@PathVariable String userId) {
-        return userService.removeUserById(userId);
-    }
-
-    @PostMapping("/user/update")
-    public User update(@RequestBody User newUserData) {
-        return null;
+    public static void main(String[] args) {
+        ApplicationContext ctx = SpringApplication.run(App.class, args);
     }
 }
