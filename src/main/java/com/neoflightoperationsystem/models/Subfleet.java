@@ -37,7 +37,9 @@ public class Subfleet {
 
     private String type;
     private String name;
-    private Airline airline;
+
+    /*@Column
+    private Airline airline;*/
 
     public UUID getId() {
         return id;
@@ -63,11 +65,11 @@ public class Subfleet {
         this.name = name;
     }
 
-    public Airline getAirline() {
+    /*public Airline getAirline() {
         return airline;
     }
 
     public void setAirline(Airline airline) {
         this.airline = airline;
-    }
+    }*/
 }

@@ -31,18 +31,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UserController implements BaseCrudControllerInterface<User> {
+public class UserController implements BaseCrudControllerInterface<User, ServiceResult<User>> {
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/user/create")
-    public User create(User newUser) {
+    public ServiceResult<User> create(User newUser) {
         return userService.addNewUser(newUser);
     }
 
     @GetMapping("/user/{userId}")
-    public User get(@PathVariable String userId) {
+    public ServiceResult<User> get(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
 
@@ -52,7 +52,7 @@ public class UserController implements BaseCrudControllerInterface<User> {
     }
 
     @PostMapping("/user/update")
-    public User update(@RequestBody User newUserData) {
+    public ServiceResult<User> update(@RequestBody User newUserData) {
         return null;
     }
 }

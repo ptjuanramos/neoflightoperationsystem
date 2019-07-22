@@ -24,5 +24,43 @@
 
 package com.neoflightoperationsystem.models;
 
-public class ServiceResult {
+import java.util.UUID;
+
+public class ServiceResult<T> {
+    private UUID id;
+    private boolean ok;
+    private T data;
+
+    public ServiceResult(UUID id, boolean ok, T data) {
+        this.id = id;
+        this.ok = ok;
+        this.data = data;
+    }
+
+    public ServiceResult() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public boolean isOk() {
+        return ok;
+    }
+
+    public void setOk(boolean ok) {
+        this.ok = ok;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }

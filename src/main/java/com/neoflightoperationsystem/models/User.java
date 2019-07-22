@@ -39,8 +39,7 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @OneToOne
-    @Column(name="current_airport")
+    @ManyToOne(targetEntity = Airport.class)
     private Airport currentAirport;
 
     public UUID getId() {

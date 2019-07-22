@@ -26,21 +26,47 @@ package com.neoflightoperationsystem.services;
 
 import com.neoflightoperationsystem.models.ServiceResult;
 import com.neoflightoperationsystem.models.User;
+import com.neoflightoperationsystem.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class UserService {
 
-    public User addNewUser(User user) {
-        return null;
+    @Autowired
+    UserRepository userRepository;
+
+    public ServiceResult<User> addNewUser(User user) {
+        User newUser = userRepository.save(user);
+        ServiceResult<User> userCreationResult = new ServiceResult<User>();
+        userCreationResult.setId(UUID.randomUUID());
+        userCreationResult.setData(newUser);
+        userCreationResult.setOk(true);
+
+        return userCreationResult;
     }
 
-    public ServiceResult removeUserById(String userId) {
-        return null;
+    public ServiceResult<String> removeUserById(String userId) {
+        UUID userIdUUID = UUID.fromString(userId);
+        userRepository.deleteById(userIdUUID);
+        ServiceResult<String> serviceResult = new ServiceResult<String>();
+        serviceResult.setId(UUID.randomUUID());
+        serviceResult.setOk(true);
+        serviceResult.setData("User deleted");
+
+        return serviceResult;
     }
 
-    public User getUserById(String userId) {
-        return null;
+    public ServiceResult<User> getUserById(String userId) {
+        UUID userIdUUID = UUID.fromString(userId);
+        ServiceResult<User> serviceResult = new ServiceResult<User>();
+        serviceResult.setId(UUID.randomUUID());
+        serviceResult.setOk(true);
+        serviceResult.setData(userRepository.findById(userIdUUID).get()); //TODO change this
+
+        return serviceResult;
     }
 
 

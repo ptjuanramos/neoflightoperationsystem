@@ -24,5 +24,86 @@
 
 package com.neoflightoperationsystem.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.UUID;
+
+@Entity
 public class Airline {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    private String code;
+
+    @Column(length = 3)
+    private String icao;
+
+    private String iata;
+
+    private String name;
+
+    private String logo;
+
+    @Column(length = 2)
+    private String country;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getIcao() {
+        return icao;
+    }
+
+    public void setIcao(String icao) {
+        this.icao = icao;
+    }
+
+    public String getIata() {
+        return iata;
+    }
+
+    public void setIata(String iata) {
+        this.iata = iata;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }

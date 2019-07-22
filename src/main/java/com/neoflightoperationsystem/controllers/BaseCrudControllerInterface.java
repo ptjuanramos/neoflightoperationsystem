@@ -26,13 +26,13 @@ package com.neoflightoperationsystem.controllers;
 
 import com.neoflightoperationsystem.models.ServiceResult;
 
-public interface BaseCrudControllerInterface<T> {
+public interface BaseCrudControllerInterface<I,T> {
 
     /**
      *
      * @return
      */
-    T create(T newData);
+    T create(I newData);
 
     /**
      *
@@ -50,5 +50,5 @@ public interface BaseCrudControllerInterface<T> {
      *
      * @return
      */
-    T update(T data);
+    T update(I data);
 }

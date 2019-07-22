@@ -43,7 +43,10 @@ public class Aircraft {
     private String icao;
     private String registration;
     private String hexCode;
+
+    @ManyToOne
     private Airport currentAirport;
+
     private AircraftStatus aircraftStatus;
 
     public UUID getId() {
