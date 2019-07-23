@@ -38,6 +38,7 @@ public class ServiceResult<T> {
     }
 
     public ServiceResult() {
+        id = UUID.randomUUID();
     }
 
     public UUID getId() {

@@ -26,10 +26,12 @@ package com.neoflightoperationsystem.services;
 
 import com.neoflightoperationsystem.models.ServiceResult;
 import com.neoflightoperationsystem.models.User;
-import com.neoflightoperationsystem.repositories.UserRepository;
+import com.neoflightoperationsystem.repositories.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -38,6 +40,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public ServiceResult<User> addNewUser(User user) {
         User newUser = userRepository.save(user);
         ServiceResult<User> userCreationResult = new ServiceResult<User>();
@@ -48,26 +55,63 @@ public class UserService {
         return userCreationResult;
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
+    public ServiceResult<User> getUserByEmail(String email) {
+        Optional<User> possibleFoundUser = userRepository.findUserByEmail(email);
+        ServiceResult<User> serviceResult = new ServiceResult<User>();
+        if(!possibleFoundUser.isPresent()) {
+            serviceResult.setOk(false);
+            return serviceResult;
+        }
+
+        serviceResult.setOk(true);
+        serviceResult.setData(possibleFoundUser.get());
+        return serviceResult;
+    }
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public ServiceResult<String> removeUserById(String userId) {
         UUID userIdUUID = UUID.fromString(userId);
-        userRepository.deleteById(userIdUUID);
+        Optional<User> possibleFoundUser = userRepository.findById(userIdUUID);
         ServiceResult<String> serviceResult = new ServiceResult<String>();
-        serviceResult.setId(UUID.randomUUID());
+        if(!possibleFoundUser.isPresent()) {
+            serviceResult.setOk(false);
+            serviceResult.setData("User not found");
+            return serviceResult;
+        }
+
+        userRepository.deleteById(userIdUUID);
         serviceResult.setOk(true);
         serviceResult.setData("User deleted");
 
         return serviceResult;
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public ServiceResult<User> getUserById(String userId) {
         UUID userIdUUID = UUID.fromString(userId);
         ServiceResult<User> serviceResult = new ServiceResult<User>();
-        serviceResult.setId(UUID.randomUUID());
-        serviceResult.setOk(true);
-        serviceResult.setData(userRepository.findById(userIdUUID).get()); //TODO change this
+        Optional<User> possibleFoundUser = userRepository.findById(userIdUUID);
+
+        if(possibleFoundUser.isPresent() && !StringUtils.isEmpty(possibleFoundUser.get().getFirstName())) {
+            serviceResult.setOk(true);
+            serviceResult.setData(possibleFoundUser.get());
+        } else {
+            serviceResult.setOk(false);
+        }
 
         return serviceResult;
     }
-
-
 }

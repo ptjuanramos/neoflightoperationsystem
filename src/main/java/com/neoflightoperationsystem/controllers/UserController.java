@@ -37,7 +37,7 @@ public class UserController implements BaseCrudControllerInterface<User, Service
     private UserService userService;
 
     @PostMapping("/user/create")
-    public ServiceResult<User> create(User newUser) {
+    public ServiceResult<User> create(@RequestBody User newUser) {
         return userService.addNewUser(newUser);
     }
 
@@ -46,12 +46,16 @@ public class UserController implements BaseCrudControllerInterface<User, Service
         return userService.getUserById(userId);
     }
 
-    @PostMapping("/user/delete/{userId}")
+    @GetMapping("/user/email/{email}")
+    public ServiceResult<User> getByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
+    @DeleteMapping("/user/delete/{userId}")
     public ServiceResult delete(@PathVariable String userId) {
         return userService.removeUserById(userId);
     }
 
-    @PostMapping("/user/update")
     public ServiceResult<User> update(@RequestBody User newUserData) {
         return null;
     }

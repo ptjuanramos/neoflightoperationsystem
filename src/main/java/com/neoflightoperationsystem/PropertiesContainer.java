@@ -26,15 +26,23 @@ package com.neoflightoperationsystem;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-public class App {
-    private final static Logger APP_LOGGER = LoggerFactory.getLogger(App.class);
+//TODO
+@ComponentScan
+public class PropertiesContainer {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(App.class, args);
+    private static final Logger PROPERTIES_CONTAINER_LOGGER = LoggerFactory.getLogger(PropertiesContainer.class);
+
+    @Value("${server.address}")
+    private String environmentName;
+
+    public void logEnvironmentName() {
+        PROPERTIES_CONTAINER_LOGGER.info(environmentName);
+    }
+
+    public static void setLoggerContext() {
+        /*PROPERTIES_CONTAINER_LOGGER.*/
     }
 }
