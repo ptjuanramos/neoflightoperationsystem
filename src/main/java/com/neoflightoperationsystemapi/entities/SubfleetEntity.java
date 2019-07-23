@@ -38,7 +38,6 @@ public class SubfleetEntity {
     private String type;
     private String name;
 
-    @Column
     @ManyToOne
     private AirlineEntity airline;
 
@@ -66,11 +65,11 @@ public class SubfleetEntity {
         this.name = name;
     }
 
-    /*public AirlineEntity getAirline() {
+    public AirlineEntity getAirline() {
         return airline;
     }
 
     public void setAirline(AirlineEntity airline) {
         this.airline = airline;
-    }*/
+    }
 }

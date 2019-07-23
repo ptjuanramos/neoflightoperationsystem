@@ -20,45 +20,24 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *//*
+ */
 
+package com.neoflightoperationsystemapi.controllers;
 
-package com.neoflightoperationsystemapi.entities;
+import com.neoflightoperationsystemapi.entities.PilotInfoEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.*;
-import java.sql.Time;
 import java.util.UUID;
 
-@Entity
-@Table(name = "pirep")
-public class PirepEntity {
+@RestController
+public class PilotController {
 
-    @Id
-    @GeneratedValue
-    private UUID id;
-
-    @Column(name = "flight_number")
-    private String flightNumber;
-
-    private String routeCode;
-    private String routeLeg;
-    private AirlineEntity airline;
-    private AircraftEntity aircraft;
-    private AirportEntity departureAirport;
-    private AirportEntity arrivalAirport;
-    private AirportEntity alternateAirport;
-    private float distance;
-    private float plannedDistance;
-    private Time blockTime;
-    private Time flightTime;
-    private Time plannedFlightTime;
-    private float zeroFuelWeight;
-    private float blockFuelWeight;
-    private float fuelUsedWeight;
-
-
-    //Remarks
-    //rwy arr and dep?
+    @GetMapping("/pilot/{{userId}}")
+    public ServiceResult<PilotInfoEntity> getPilotInfoByUserId(@PathVariable UUID userId) {
+        return null;
+    }
 
 }
-*/

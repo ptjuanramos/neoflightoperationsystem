@@ -24,9 +24,64 @@
 
 package com.neoflightoperationsystemapi.entities;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 public class PilotInfoEntity {
+
+    @Id
+    @GeneratedValue
     private UUID id;
-    private UUID userId;
+
+    @OneToOne(targetEntity = UserEntity.class)
+    private UserEntity user;
+
+    @Column(name="first_name")
+    private String firstName;
+
+    @Column(name="last_name")
+    private String lastName;
+
+    @ManyToOne(targetEntity = AirportEntity.class)
+    private AirportEntity currentAirport;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public AirportEntity getCurrentAirport() {
+        return currentAirport;
+    }
+
+    public void setCurrentAirport(AirportEntity currentAirport) {
+        this.currentAirport = currentAirport;
+    }
 }

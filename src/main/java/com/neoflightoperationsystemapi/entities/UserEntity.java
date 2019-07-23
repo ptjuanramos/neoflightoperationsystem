@@ -24,6 +24,8 @@
 
 package com.neoflightoperationsystemapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -35,18 +37,19 @@ public class UserEntity {
     @GeneratedValue
     private UUID id;
 
-    @Column(name="first_name")
-    private String firstName;
-
-    @Column(name="last_name")
-    private String lastName;
-
+    @Column(
+        name = "email",
+        nullable = false,
+        unique = true
+    )
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(
+            name = "password",
+            nullable = false
+    )
     private String password;
-
-    @ManyToOne(targetEntity = AirportEntity.class)
-    private AirportEntity currentAirport;
 
     public UUID getId() {
         return id;
@@ -54,22 +57,6 @@ public class UserEntity {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -86,13 +73,5 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public AirportEntity getCurrentAirport() {
-        return currentAirport;
-    }
-
-    public void setCurrentAirport(AirportEntity currentAirport) {
-        this.currentAirport = currentAirport;
     }
 }

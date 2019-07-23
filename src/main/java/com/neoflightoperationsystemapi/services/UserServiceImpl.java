@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ServiceResult<UserEntity> addNewUser(UserEntity user) {
         UserEntity newUser = userRepository.save(user);
-        ServiceResult<UserEntity> userCreationResult = new ServiceResult<UserEntity>();
+        ServiceResult<UserEntity> userCreationResult = new ServiceResult<>();
         userCreationResult.setId(UUID.randomUUID());
         userCreationResult.setData(newUser);
         userCreationResult.setOk(true);
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ServiceResult<UserEntity> getUserByEmail(String email) {
         Optional<UserEntity> possibleFoundUser = userRepository.findUserByEmail(email);
-        ServiceResult<UserEntity> serviceResult = new ServiceResult<UserEntity>();
+        ServiceResult<UserEntity> serviceResult = new ServiceResult<>();
         if(!possibleFoundUser.isPresent()) {
             serviceResult.setOk(false);
             return serviceResult;
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
     public ServiceResult<String> removeUserById(String userId) {
         UUID userIdUUID = UUID.fromString(userId);
         Optional<UserEntity> possibleFoundUser = userRepository.findById(userIdUUID);
-        ServiceResult<String> serviceResult = new ServiceResult<String>();
+        ServiceResult<String> serviceResult = new ServiceResult<>();
         if(!possibleFoundUser.isPresent()) {
             serviceResult.setOk(false);
             serviceResult.setData("UserEntity not found");
@@ -87,10 +87,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public ServiceResult<UserEntity> getUserById(String userId) {
         UUID userIdUUID = UUID.fromString(userId);
-        ServiceResult<UserEntity> serviceResult = new ServiceResult<UserEntity>();
+        ServiceResult<UserEntity> serviceResult = new ServiceResult<>();
         Optional<UserEntity> possibleFoundUser = userRepository.findById(userIdUUID);
 
-        if(possibleFoundUser.isPresent() && !StringUtils.isEmpty(possibleFoundUser.get().getFirstName())) {
+        if(possibleFoundUser.isPresent() && !StringUtils.isEmpty(possibleFoundUser.get().getEmail())) {
             serviceResult.setOk(true);
             serviceResult.setData(possibleFoundUser.get());
         } else {
