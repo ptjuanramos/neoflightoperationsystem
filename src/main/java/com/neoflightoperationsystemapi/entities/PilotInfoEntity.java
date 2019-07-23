@@ -22,19 +22,11 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem;
+package com.neoflightoperationsystemapi.entities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import java.util.UUID;
 
-@SpringBootApplication
-public class App {
-    private final static Logger APP_LOGGER = LoggerFactory.getLogger(App.class);
-
-    public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(App.class, args);
-    }
+public class PilotInfoEntity {
+    private UUID id;
+    private UUID userId;
 }

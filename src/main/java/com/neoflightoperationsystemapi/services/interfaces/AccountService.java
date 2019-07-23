@@ -22,10 +22,17 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.services;
+package com.neoflightoperationsystemapi.services.interfaces;
 
-import org.springframework.stereotype.Component;
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
 
-@Component
-public class AccountService {
+public interface AccountService {
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+    ServiceResult<UserEntity> login(UserEntity user);
 }

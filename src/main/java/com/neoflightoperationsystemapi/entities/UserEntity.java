@@ -22,14 +22,15 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.entities;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table
-public class User {
+@Table(name = "user")
+public class UserEntity {
+
     @Id
     @GeneratedValue
     private UUID id;
@@ -44,8 +45,8 @@ public class User {
 
     private String password;
 
-    @ManyToOne(targetEntity = Airport.class)
-    private Airport currentAirport;
+    @ManyToOne(targetEntity = AirportEntity.class)
+    private AirportEntity currentAirport;
 
     public UUID getId() {
         return id;
@@ -87,11 +88,11 @@ public class User {
         this.password = password;
     }
 
-    public Airport getCurrentAirport() {
+    public AirportEntity getCurrentAirport() {
         return currentAirport;
     }
 
-    public void setCurrentAirport(Airport currentAirport) {
+    public void setCurrentAirport(AirportEntity currentAirport) {
         this.currentAirport = currentAirport;
     }
 }

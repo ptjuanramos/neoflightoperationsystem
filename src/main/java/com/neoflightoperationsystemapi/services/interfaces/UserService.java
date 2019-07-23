@@ -22,7 +22,38 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystemapi.services.interfaces;
 
-public class FlightController {
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+
+public interface UserService {
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+    ServiceResult<UserEntity> addNewUser(UserEntity user);
+
+    /**
+     *
+     * @param email
+     * @return
+     */
+    ServiceResult<UserEntity> getUserByEmail(String email);
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    ServiceResult<String> removeUserById(String userId);
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    ServiceResult<UserEntity> getUserById(String userId);
 }

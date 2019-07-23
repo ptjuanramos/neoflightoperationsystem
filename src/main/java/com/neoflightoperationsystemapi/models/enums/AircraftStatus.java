@@ -22,7 +22,14 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystemapi.models.enums;
 
-public class AirlineController {
+/**
+ *
+ */
+public enum AircraftStatus {
+    NEW,
+    INACTIVE,
+    ON_AIR,
+    MAINTENANCE
 }

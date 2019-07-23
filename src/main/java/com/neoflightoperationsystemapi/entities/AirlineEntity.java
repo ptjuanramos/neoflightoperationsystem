@@ -22,32 +22,32 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Aircraft {
+@Table(name = "airline")
+public class AirlineEntity {
+
     @Id
     @GeneratedValue
     private UUID id;
 
-    @ManyToOne
-    private Subfleet subfleet;
+    private String code;
+
+    @Column(length = 3)
+    private String icao;
+
+    private String iata;
 
     private String name;
-    private String icao;
-    private String registration;
-    private String hexCode;
 
-    @ManyToOne
-    private Airport currentAirport;
+    private String logo;
 
-    private AircraftStatus aircraftStatus;
+    @Column(length = 2)
+    private String country;
 
     public UUID getId() {
         return id;
@@ -57,20 +57,12 @@ public class Aircraft {
         this.id = id;
     }
 
-    public Subfleet getSubfleet() {
-        return subfleet;
+    public String getCode() {
+        return code;
     }
 
-    public void setSubfleet(Subfleet subfleet) {
-        this.subfleet = subfleet;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getIcao() {
@@ -81,36 +73,35 @@ public class Aircraft {
         this.icao = icao;
     }
 
-    public String getRegistration() {
-        return registration;
+    public String getIata() {
+        return iata;
     }
 
-    public void setRegistration(String registration) {
-        this.registration = registration;
+    public void setIata(String iata) {
+        this.iata = iata;
     }
 
-    public String getHexCode() {
-        return hexCode;
+    public String getName() {
+        return name;
     }
 
-    public void setHexCode(String hexCode) {
-        this.hexCode = hexCode;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Airport getCurrentAirport() {
-        return currentAirport;
+    public String getLogo() {
+        return logo;
     }
 
-    public void setCurrentAirport(Airport currentAirport) {
-        this.currentAirport = currentAirport;
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
-    public AircraftStatus getAircraftStatus() {
-        return aircraftStatus;
+    public String getCountry() {
+        return country;
     }
 
-    public void setAircraftStatus(AircraftStatus aircraftStatus) {
-        this.aircraftStatus = aircraftStatus;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
-

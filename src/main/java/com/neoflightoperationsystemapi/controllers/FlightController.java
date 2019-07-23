@@ -22,46 +22,7 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.controllers;
 
-import java.util.UUID;
-
-public class ServiceResult<T> {
-    private UUID id;
-    private boolean ok;
-    private T data;
-
-    public ServiceResult(UUID id, boolean ok, T data) {
-        this.id = id;
-        this.ok = ok;
-        this.data = data;
-    }
-
-    public ServiceResult() {
-        id = UUID.randomUUID();
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public boolean isOk() {
-        return ok;
-    }
-
-    public void setOk(boolean ok) {
-        this.ok = ok;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
+public class FlightController {
 }

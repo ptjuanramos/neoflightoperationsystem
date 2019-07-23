@@ -22,11 +22,12 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.services;
+package com.neoflightoperationsystemapi.services;
 
-import com.neoflightoperationsystem.models.ServiceResult;
-import com.neoflightoperationsystem.models.User;
-import com.neoflightoperationsystem.repositories.interfaces.UserRepository;
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import com.neoflightoperationsystemapi.repositories.interfaces.UserRepository;
+import com.neoflightoperationsystemapi.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -35,19 +36,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
-    /**
-     *
-     * @param user
-     * @return
-     */
-    public ServiceResult<User> addNewUser(User user) {
-        User newUser = userRepository.save(user);
-        ServiceResult<User> userCreationResult = new ServiceResult<User>();
+    @Override
+    public ServiceResult<UserEntity> addNewUser(UserEntity user) {
+        UserEntity newUser = userRepository.save(user);
+        ServiceResult<UserEntity> userCreationResult = new ServiceResult<UserEntity>();
         userCreationResult.setId(UUID.randomUUID());
         userCreationResult.setData(newUser);
         userCreationResult.setOk(true);
@@ -55,14 +52,10 @@ public class UserService {
         return userCreationResult;
     }
 
-    /**
-     *
-     * @param email
-     * @return
-     */
-    public ServiceResult<User> getUserByEmail(String email) {
-        Optional<User> possibleFoundUser = userRepository.findUserByEmail(email);
-        ServiceResult<User> serviceResult = new ServiceResult<User>();
+    @Override
+    public ServiceResult<UserEntity> getUserByEmail(String email) {
+        Optional<UserEntity> possibleFoundUser = userRepository.findUserByEmail(email);
+        ServiceResult<UserEntity> serviceResult = new ServiceResult<UserEntity>();
         if(!possibleFoundUser.isPresent()) {
             serviceResult.setOk(false);
             return serviceResult;
@@ -73,37 +66,29 @@ public class UserService {
         return serviceResult;
     }
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
+    @Override
     public ServiceResult<String> removeUserById(String userId) {
         UUID userIdUUID = UUID.fromString(userId);
-        Optional<User> possibleFoundUser = userRepository.findById(userIdUUID);
+        Optional<UserEntity> possibleFoundUser = userRepository.findById(userIdUUID);
         ServiceResult<String> serviceResult = new ServiceResult<String>();
         if(!possibleFoundUser.isPresent()) {
             serviceResult.setOk(false);
-            serviceResult.setData("User not found");
+            serviceResult.setData("UserEntity not found");
             return serviceResult;
         }
 
         userRepository.deleteById(userIdUUID);
         serviceResult.setOk(true);
-        serviceResult.setData("User deleted");
+        serviceResult.setData("UserEntity deleted");
 
         return serviceResult;
     }
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
-    public ServiceResult<User> getUserById(String userId) {
+    @Override
+    public ServiceResult<UserEntity> getUserById(String userId) {
         UUID userIdUUID = UUID.fromString(userId);
-        ServiceResult<User> serviceResult = new ServiceResult<User>();
-        Optional<User> possibleFoundUser = userRepository.findById(userIdUUID);
+        ServiceResult<UserEntity> serviceResult = new ServiceResult<UserEntity>();
+        Optional<UserEntity> possibleFoundUser = userRepository.findById(userIdUUID);
 
         if(possibleFoundUser.isPresent() && !StringUtils.isEmpty(possibleFoundUser.get().getFirstName())) {
             serviceResult.setOk(true);

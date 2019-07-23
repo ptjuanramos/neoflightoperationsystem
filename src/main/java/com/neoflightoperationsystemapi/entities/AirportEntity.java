@@ -22,24 +22,37 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
-public class Subfleet {
+@Table(name = "airport")
+public class AirportEntity {
+
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String type;
+    private String iata;
+
+    private String icao;
+
     private String name;
 
-    /*@Column
-    private Airline airline;*/
+    private String location;
+
+    private String country;
+
+    private String timezone;
+
+    private float lat;
+
+    private float lon;
 
     public UUID getId() {
         return id;
@@ -49,12 +62,20 @@ public class Subfleet {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getIata() {
+        return iata;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setIata(String iata) {
+        this.iata = iata;
+    }
+
+    public String getIcao() {
+        return icao;
+    }
+
+    public void setIcao(String icao) {
+        this.icao = icao;
     }
 
     public String getName() {
@@ -65,11 +86,43 @@ public class Subfleet {
         this.name = name;
     }
 
-    /*public Airline getAirline() {
-        return airline;
+    public String getLocation() {
+        return location;
     }
 
-    public void setAirline(Airline airline) {
-        this.airline = airline;
-    }*/
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLon() {
+        return lon;
+    }
+
+    public void setLon(float lon) {
+        this.lon = lon;
+    }
 }

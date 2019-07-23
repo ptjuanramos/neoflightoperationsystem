@@ -22,34 +22,26 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.http.HttpStatus;
+
 import java.util.UUID;
 
-@Entity
-public class Airline {
-
-    @Id
-    @GeneratedValue
+public class ServiceResult<T> {
     private UUID id;
+    private boolean ok;
 
-    private String code;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private T data;
 
-    @Column(length = 3)
-    private String icao;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private HttpStatus code;
 
-    private String iata;
-
-    private String name;
-
-    private String logo;
-
-    @Column(length = 2)
-    private String country;
+    public ServiceResult() {
+        id = UUID.randomUUID();
+    }
 
     public UUID getId() {
         return id;
@@ -59,51 +51,27 @@ public class Airline {
         this.id = id;
     }
 
-    public String getCode() {
+    public boolean isOk() {
+        return ok;
+    }
+
+    public void setOk(boolean ok) {
+        this.ok = ok;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public HttpStatus getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(HttpStatus code) {
         this.code = code;
-    }
-
-    public String getIcao() {
-        return icao;
-    }
-
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
-
-    public String getIata() {
-        return iata;
-    }
-
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }

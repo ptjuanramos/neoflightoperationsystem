@@ -22,9 +22,41 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.repositories;
+package com.neoflightoperationsystemapi.entities;
 
-public class QueriesConstants {
+import javax.persistence.*;
+import java.sql.Time;
+import java.util.UUID;
 
-    public static final String QUERY_GET_USER_BY_EMAIL = "SELECT u FROM User u WHERE u.email = :email";
+@Entity
+@Table(name = "pirep")
+public class PirepEntity {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @Column(name = "flight_number")
+    private String flightNumber;
+
+    private String routeCode;
+    private String routeLeg;
+    private AirlineEntity airline;
+    private AircraftEntity aircraft;
+    private AirportEntity departureAirport;
+    private AirportEntity arrivalAirport;
+    private AirportEntity alternateAirport;
+    private float distance;
+    private float plannedDistance;
+    private Time blockTime;
+    private Time flightTime;
+    private Time plannedFlightTime;
+    private float zeroFuelWeight;
+    private float blockFuelWeight;
+    private float fuelUsedWeight;
+
+
+    //Remarks
+    //rwy arr and dep?
+
 }

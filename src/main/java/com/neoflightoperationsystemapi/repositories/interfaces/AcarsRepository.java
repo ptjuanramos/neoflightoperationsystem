@@ -22,7 +22,12 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystemapi.repositories.interfaces;
 
-public class AircraftController {
+import com.neoflightoperationsystemapi.entities.AcarsEntity;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.UUID;
+
+public interface AcarsRepository extends CrudRepository<AcarsEntity, UUID> {
 }

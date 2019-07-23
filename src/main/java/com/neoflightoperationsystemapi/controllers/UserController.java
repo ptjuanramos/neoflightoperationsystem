@@ -22,41 +22,42 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystemapi.controllers;
 
-import com.neoflightoperationsystem.models.ServiceResult;
-import com.neoflightoperationsystem.models.User;
-import com.neoflightoperationsystem.services.UserService;
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import com.neoflightoperationsystemapi.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UserController implements BaseCrudControllerInterface<User, ServiceResult<User>> {
+public class UserController implements BaseCrudControllerInterface<UserEntity, ServiceResult<UserEntity>> {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user/create")
-    public ServiceResult<User> create(@RequestBody User newUser) {
+    @PostMapping("/user/")
+    public ServiceResult<UserEntity> create(@RequestBody UserEntity newUser) {
         return userService.addNewUser(newUser);
     }
 
     @GetMapping("/user/{userId}")
-    public ServiceResult<User> get(@PathVariable String userId) {
+    public ServiceResult<UserEntity> get(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
 
     @GetMapping("/user/email/{email}")
-    public ServiceResult<User> getByEmail(@PathVariable String email) {
+    public ServiceResult<UserEntity> getByEmail(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
 
-    @DeleteMapping("/user/delete/{userId}")
+    @DeleteMapping("/user/{userId}")
     public ServiceResult delete(@PathVariable String userId) {
         return userService.removeUserById(userId);
     }
 
-    public ServiceResult<User> update(@RequestBody User newUserData) {
+    @PutMapping("/user/")
+    public ServiceResult<UserEntity> update(@RequestBody UserEntity newUserData) {
         return null;
     }
 }

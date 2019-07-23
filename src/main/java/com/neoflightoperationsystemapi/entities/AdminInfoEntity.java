@@ -22,27 +22,12 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem;
+package com.neoflightoperationsystemapi.entities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ComponentScan;
+import java.util.UUID;
 
-//TODO
-@ComponentScan
-public class PropertiesContainer {
+public class AdminInfoEntity {
+    private UUID id;
 
-    private static final Logger PROPERTIES_CONTAINER_LOGGER = LoggerFactory.getLogger(PropertiesContainer.class);
-
-    @Value("${server.address}")
-    private String environmentName;
-
-    public void logEnvironmentName() {
-        PROPERTIES_CONTAINER_LOGGER.info(environmentName);
-    }
-
-    public static void setLoggerContext() {
-        /*PROPERTIES_CONTAINER_LOGGER.*/
-    }
+    private UserEntity user;
 }

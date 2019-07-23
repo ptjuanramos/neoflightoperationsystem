@@ -22,14 +22,55 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.entities;
 
-/**
- *
- */
-public enum AircraftStatus {
-    NEW,
-    INACTIVE,
-    ON_AIR,
-    MAINTENANCE
+import javax.persistence.*;
+import java.util.UUID;
+
+@Entity
+@Table(name = "subfleet")
+public class SubfleetEntity {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    private String type;
+    private String name;
+
+    @Column
+    @ManyToOne
+    private AirlineEntity airline;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /*public AirlineEntity getAirline() {
+        return airline;
+    }
+
+    public void setAirline(AirlineEntity airline) {
+        this.airline = airline;
+    }*/
 }

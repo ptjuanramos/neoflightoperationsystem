@@ -22,19 +22,7 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystemapi.controllers;
 
-import com.neoflightoperationsystem.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class AccountController {
-
-    @Autowired
-    private UserService userService;
-
-    /*public User login(@RequestBody User userLoginInput) {
-
-    }*/
+public class AirlineController {
 }

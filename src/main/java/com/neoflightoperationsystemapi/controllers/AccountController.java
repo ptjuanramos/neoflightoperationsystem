@@ -22,33 +22,29 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.controllers;
+package com.neoflightoperationsystemapi.controllers;
 
-import com.neoflightoperationsystem.models.ServiceResult;
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import com.neoflightoperationsystemapi.services.interfaces.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-public interface BaseCrudControllerInterface<I,T> {
+@RestController
+public class AccountController {
 
-    /**
-     *
-     * @return
-     */
-    T create(I newData);
+    @Autowired
+    private AccountService accountService;
 
-    /**
-     *
-     * @return
-     */
-    T get(String id);
+    @PostMapping("/account/login")
+    public ServiceResult<UserEntity> login(@RequestBody UserEntity userLoginInput) {
+        return accountService.login(userLoginInput);
+    }
 
-    /**
-     *
-     * @return
-     */
-    ServiceResult delete(String id);
-
-    /**
-     *
-     * @return
-     */
-    T update(I data);
+    @PostMapping("/account/signup")
+    public ServiceResult<UserEntity> signUp(@RequestBody UserEntity userSignUpInput) {
+        return null;
+    }
 }

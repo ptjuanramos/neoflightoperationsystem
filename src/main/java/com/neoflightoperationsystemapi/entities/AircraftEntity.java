@@ -22,28 +22,32 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.models;
+package com.neoflightoperationsystemapi.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.neoflightoperationsystemapi.models.enums.AircraftStatus;
+
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Airport {
-
+@Table(name = "aicraft")
+public class AircraftEntity {
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String iata;
-    private String icao;
+    @ManyToOne
+    private SubfleetEntity subfleet;
+
     private String name;
-    private String location;
-    private String country;
-    private String timezone;
-    private float lat;
-    private float lon;
+    private String icao;
+    private String registration;
+    private String hexCode;
+
+    @ManyToOne
+    private AirportEntity currentAirport;
+
+    private AircraftStatus aircraftStatus;
 
     public UUID getId() {
         return id;
@@ -53,20 +57,12 @@ public class Airport {
         this.id = id;
     }
 
-    public String getIata() {
-        return iata;
+    public SubfleetEntity getSubfleet() {
+        return subfleet;
     }
 
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
-
-    public String getIcao() {
-        return icao;
-    }
-
-    public void setIcao(String icao) {
-        this.icao = icao;
+    public void setSubfleet(SubfleetEntity subfleet) {
+        this.subfleet = subfleet;
     }
 
     public String getName() {
@@ -77,43 +73,44 @@ public class Airport {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getIcao() {
+        return icao;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setIcao(String icao) {
+        this.icao = icao;
     }
 
-    public String getCountry() {
-        return country;
+    public String getRegistration() {
+        return registration;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setRegistration(String registration) {
+        this.registration = registration;
     }
 
-    public String getTimezone() {
-        return timezone;
+    public String getHexCode() {
+        return hexCode;
     }
 
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
+    public void setHexCode(String hexCode) {
+        this.hexCode = hexCode;
     }
 
-    public float getLat() {
-        return lat;
+    public AirportEntity getCurrentAirport() {
+        return currentAirport;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
+    public void setCurrentAirport(AirportEntity currentAirport) {
+        this.currentAirport = currentAirport;
     }
 
-    public float getLon() {
-        return lon;
+    public AircraftStatus getAircraftStatus() {
+        return aircraftStatus;
     }
 
-    public void setLon(float lon) {
-        this.lon = lon;
+    public void setAircraftStatus(AircraftStatus aircraftStatus) {
+        this.aircraftStatus = aircraftStatus;
     }
 }
+
