@@ -24,22 +24,25 @@
 
 package com.neoflightoperationsystemapi.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
-@Table(name = "airport")
+@Entity(name = "airport")
+@Table(
+        name = "airport",
+        uniqueConstraints =
+                @UniqueConstraint(columnNames = {"latitude", "longitude"})
+)
 public class AirportEntity {
 
     @Id
     @GeneratedValue
     private UUID id;
 
+    @Column(unique = true)
     private String iata;
 
+    @Column(unique = true)
     private String icao;
 
     private String name;
@@ -50,9 +53,9 @@ public class AirportEntity {
 
     private String timezone;
 
-    private float lat;
+    private float latitude;
 
-    private float lon;
+    private float longitude;
 
     public UUID getId() {
         return id;
@@ -110,19 +113,19 @@ public class AirportEntity {
         this.timezone = timezone;
     }
 
-    public float getLat() {
-        return lat;
+    public float getLatitude() {
+        return latitude;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
     }
 
-    public float getLon() {
-        return lon;
+    public float getLongitude() {
+        return longitude;
     }
 
-    public void setLon(float lon) {
-        this.lon = lon;
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 }

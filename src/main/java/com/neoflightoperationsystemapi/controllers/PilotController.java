@@ -26,18 +26,31 @@ package com.neoflightoperationsystemapi.controllers;
 
 import com.neoflightoperationsystemapi.entities.PilotInfoEntity;
 import com.neoflightoperationsystemapi.models.ServiceResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import com.neoflightoperationsystemapi.services.interfaces.PilotService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 public class PilotController {
 
-    @GetMapping("/pilot/{{userId}}")
-    public ServiceResult<PilotInfoEntity> getPilotInfoByUserId(@PathVariable UUID userId) {
-        return null;
+    @Autowired
+    private PilotService pilotService;
+
+    @GetMapping("/pilot/{userOrPilotId}")
+    public ServiceResult<PilotInfoEntity> getPilotInfoByUserOrPilotId(@PathVariable UUID userOrPilotId) {
+        return pilotService.getPilotInfoByUserOrPilotId(userOrPilotId);
+    }
+
+    @PostMapping("/pilot/{userId}")
+    public ServiceResult<PilotInfoEntity> createPilotInfo(@PathVariable UUID userId, @RequestBody PilotInfoEntity newPilotInfo) {
+        return pilotService.createPilotInfoWithExistentUser(userId, newPilotInfo);
+    }
+
+    @PostMapping("/pilot/")
+    public ServiceResult<PilotInfoEntity> createPilotInfo(@RequestBody PilotInfoEntity newPilotInfo) {
+        return pilotService.createPilotInfo(newPilotInfo);
     }
 
 }

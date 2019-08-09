@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "user")
 @Table(name = "user")
 public class UserEntity {
 

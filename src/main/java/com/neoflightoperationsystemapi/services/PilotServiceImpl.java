@@ -24,8 +24,77 @@
 
 package com.neoflightoperationsystemapi.services;
 
+import com.neoflightoperationsystemapi.entities.PilotInfoEntity;
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import com.neoflightoperationsystemapi.repositories.interfaces.PilotInfoRepository;
+import com.neoflightoperationsystemapi.repositories.interfaces.UserRepository;
+import com.neoflightoperationsystemapi.services.interfaces.PilotService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Component
-public class PilotServiceImpl {
+public class PilotServiceImpl implements PilotService {
+
+    @Autowired
+    private PilotInfoRepository pilotInfoRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public ServiceResult<PilotInfoEntity> getPilotInfoByUserOrPilotId(UUID userOrPilotId) {
+        Optional<UserEntity> possibleFoundUser = userRepository.findById(userOrPilotId);
+        ServiceResult<PilotInfoEntity> serviceResult = new ServiceResult<>();
+        Optional<PilotInfoEntity> possibleFoundPilotFound;
+
+        if(possibleFoundUser.isPresent()) {
+            possibleFoundPilotFound = pilotInfoRepository.getPilotInfoByUser(possibleFoundUser.get());
+            if(possibleFoundPilotFound.isPresent()) {
+                serviceResult.setOk(true);
+                serviceResult.setData(possibleFoundPilotFound.get());
+                return serviceResult;
+            }
+        }
+
+        possibleFoundPilotFound = pilotInfoRepository.findById(userOrPilotId);
+        if(!possibleFoundPilotFound.isPresent()) {
+            serviceResult.setOk(false);
+            return serviceResult;
+        }
+
+        serviceResult.setOk(true);
+        serviceResult.setData(possibleFoundPilotFound.get());
+        return serviceResult;
+    }
+
+    @Override
+    public ServiceResult<PilotInfoEntity> createPilotInfoWithExistentUser(UUID userId, PilotInfoEntity newPilotInfo) {
+        Optional<UserEntity> possibleFoundUser = userRepository.findById(userId);
+        ServiceResult<PilotInfoEntity> serviceResult = new ServiceResult<>();
+        if(!possibleFoundUser.isPresent()) {
+            serviceResult.setOk(false);
+            return serviceResult;
+        }
+
+        newPilotInfo.setUser(possibleFoundUser.get());
+        PilotInfoEntity newSavedPilotInfo = pilotInfoRepository.save(newPilotInfo);
+        if(newSavedPilotInfo == null) {
+            serviceResult.setOk(false);
+            return serviceResult;
+        }
+
+        serviceResult.setOk(true);
+        serviceResult.setData(newSavedPilotInfo);
+        return serviceResult;
+    }
+
+    @Override
+    public ServiceResult<PilotInfoEntity> createPilotInfo(PilotInfoEntity newPilotInfo) {
+        return null;
+    }
+
 }

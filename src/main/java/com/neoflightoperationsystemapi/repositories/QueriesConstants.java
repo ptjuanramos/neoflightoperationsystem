@@ -26,5 +26,9 @@ package com.neoflightoperationsystemapi.repositories;
 
 public class QueriesConstants {
 
-    public static final String QUERY_GET_USER_BY_EMAIL = "SELECT u FROM UserEntity u WHERE u.email = :email";
+    //User repository queries
+    public static final String QUERY_GET_USER_BY_EMAIL = "SELECT u FROM user u WHERE u.email = :email";
+
+    //Pilot repository queries
+    public static final String QUERY_GET_PILOT_BY_USER_ID = "SELECT p FROM pilot_info p WHERE p.user = :user";
 }

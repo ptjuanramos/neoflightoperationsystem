@@ -28,7 +28,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "acars")
 @Table(name = "acars")
 public class AcarsEntity {
 

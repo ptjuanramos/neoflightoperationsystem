@@ -27,7 +27,7 @@ package com.neoflightoperationsystemapi.entities;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "airline")
 @Table(name = "airline")
 public class AirlineEntity {
 
@@ -37,9 +37,13 @@ public class AirlineEntity {
 
     private String code;
 
-    @Column(length = 3)
+    @Column(
+            length = 3,
+            unique = true
+    )
     private String icao;
 
+    @Column(unique = true)
     private String iata;
 
     private String name;

@@ -27,7 +27,7 @@ package com.neoflightoperationsystemapi.entities;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "subfleet")
 @Table(name = "subfleet")
 public class SubfleetEntity {
 

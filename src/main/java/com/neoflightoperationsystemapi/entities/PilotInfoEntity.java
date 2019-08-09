@@ -27,6 +27,8 @@ package com.neoflightoperationsystemapi.entities;
 import javax.persistence.*;
 import java.util.UUID;
 
+@Table(name = "pilot_info")
+@Entity(name = "pilot_info")
 public class PilotInfoEntity {
 
     @Id

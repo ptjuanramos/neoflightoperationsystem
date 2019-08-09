@@ -24,5 +24,29 @@
 
 package com.neoflightoperationsystemapi.controllers;
 
-public class AirlineController {
+import com.neoflightoperationsystemapi.entities.AirlineEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class AirlineController implements BaseCrudControllerInterface<AirlineEntity, ServiceResult<AirlineEntity>> {
+    @Override
+    public ServiceResult<AirlineEntity> create(AirlineEntity newData) {
+        return null;
+    }
+
+    @Override
+    public ServiceResult<AirlineEntity> get(String id) {
+        return null;
+    }
+
+    @Override
+    public ServiceResult delete(String id) {
+        return null;
+    }
+
+    @Override
+    public ServiceResult<AirlineEntity> update(AirlineEntity data) {
+        return null;
+    }
 }

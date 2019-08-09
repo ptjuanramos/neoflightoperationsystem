@@ -22,33 +22,7 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystemapi.services.interfaces;
+package com.neoflightoperationsystemapi.controllers;
 
-import com.neoflightoperationsystemapi.entities.PilotInfoEntity;
-import com.neoflightoperationsystemapi.models.ServiceResult;
-
-import java.util.UUID;
-
-public interface PilotService {
-
-    /**
-     *
-     * @param userOrPilotId
-     * @return
-     */
-    ServiceResult<PilotInfoEntity> getPilotInfoByUserOrPilotId(UUID userOrPilotId);
-
-    /**
-     *
-     * @param userId
-     * @return
-     */
-    ServiceResult<PilotInfoEntity> createPilotInfoWithExistentUser(UUID userId, PilotInfoEntity newPilotInfo);
-
-    /**
-     * This will persist PilotInfoEntity and UserEntity
-     * @param newPilotInfo
-     * @return
-     */
-    ServiceResult<PilotInfoEntity> createPilotInfo(PilotInfoEntity newPilotInfo);
+public class PirepController {
 }

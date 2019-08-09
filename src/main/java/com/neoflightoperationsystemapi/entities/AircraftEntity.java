@@ -29,7 +29,7 @@ import com.neoflightoperationsystemapi.models.enums.AircraftStatus;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "aicraft")
 @Table(name = "aicraft")
 public class AircraftEntity {
     @Id

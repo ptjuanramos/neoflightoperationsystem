@@ -22,33 +22,21 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystemapi.services.interfaces;
+package com.neoflightoperationsystemapi.repositories.interfaces;
 
 import com.neoflightoperationsystemapi.entities.PilotInfoEntity;
-import com.neoflightoperationsystemapi.models.ServiceResult;
+import com.neoflightoperationsystemapi.entities.UserEntity;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
 import java.util.UUID;
 
-public interface PilotService {
+import static com.neoflightoperationsystemapi.repositories.QueriesConstants.QUERY_GET_PILOT_BY_USER_ID;
 
-    /**
-     *
-     * @param userOrPilotId
-     * @return
-     */
-    ServiceResult<PilotInfoEntity> getPilotInfoByUserOrPilotId(UUID userOrPilotId);
+public interface PilotInfoRepository extends CrudRepository<PilotInfoEntity, UUID> {
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
-    ServiceResult<PilotInfoEntity> createPilotInfoWithExistentUser(UUID userId, PilotInfoEntity newPilotInfo);
-
-    /**
-     * This will persist PilotInfoEntity and UserEntity
-     * @param newPilotInfo
-     * @return
-     */
-    ServiceResult<PilotInfoEntity> createPilotInfo(PilotInfoEntity newPilotInfo);
+    @Query(QUERY_GET_PILOT_BY_USER_ID)
+    Optional<PilotInfoEntity> getPilotInfoByUser(@Param("user") UserEntity user);
 }
