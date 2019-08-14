@@ -22,31 +22,16 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystemapi.controllers;
+package com.neoflightoperationsystemapi.services.interfaces;
 
-public interface BaseCrudControllerInterface<I,T> {
+import com.neoflightoperationsystemapi.entities.BidEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
 
-    /**
-     *
-     * @return
-     */
-    T create(I newData);
+public interface BidService {
 
     /**
-     *
+     * @param newBidInformation
      * @return
      */
-    T get(String id);
-
-    /**
-     *
-     * @return
-     */
-    T delete(String id);
-
-    /**
-     *
-     * @return
-     */
-    T update(I data);
+    ServiceResult<BidEntity> createBid(BidEntity newBidInformation);
 }

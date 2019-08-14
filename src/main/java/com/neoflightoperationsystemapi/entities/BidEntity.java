@@ -22,31 +22,48 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystemapi.controllers;
+package com.neoflightoperationsystemapi.entities;
 
-public interface BaseCrudControllerInterface<I,T> {
+import javax.persistence.*;
+import java.util.UUID;
 
-    /**
-     *
-     * @return
-     */
-    T create(I newData);
+@Entity(name = "bid")
+@Table(name = "bid")
+public class BidEntity {
 
-    /**
-     *
-     * @return
-     */
-    T get(String id);
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    /**
-     *
-     * @return
-     */
-    T delete(String id);
+    @OneToMany
+    @Column(name = "flight")
+    private FlightEntity flightEntity;
 
-    /**
-     *
-     * @return
-     */
-    T update(I data);
+    @OneToMany
+    @Column(name = "pilot")
+    private PilotInfoEntity pilotInfoEntity;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public FlightEntity getFlightEntity() {
+        return flightEntity;
+    }
+
+    public void setFlightEntity(FlightEntity flightEntity) {
+        this.flightEntity = flightEntity;
+    }
+
+    public PilotInfoEntity getPilotInfoEntity() {
+        return pilotInfoEntity;
+    }
+
+    public void setPilotInfoEntity(PilotInfoEntity pilotInfoEntity) {
+        this.pilotInfoEntity = pilotInfoEntity;
+    }
 }

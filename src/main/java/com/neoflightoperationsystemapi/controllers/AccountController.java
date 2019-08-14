@@ -30,21 +30,20 @@ import com.neoflightoperationsystemapi.services.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(name = "account")
 public class AccountController {
 
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/account/login")
+    @PostMapping("/login")
     public ServiceResult<UserEntity> login(@RequestBody UserEntity userLoginInput) {
         return accountService.login(userLoginInput);
     }
 
-    @PostMapping("/account/signup")
-    public ServiceResult<UserEntity> signUp(@RequestBody UserEntity userSignUpInput) {
-        return null;
-    }
+    //TODO other operations regarding account information
 }

@@ -22,31 +22,16 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystemapi.controllers;
+package com.neoflightoperationsystemapi.models.enums;
 
-public interface BaseCrudControllerInterface<I,T> {
-
-    /**
-     *
-     * @return
-     */
-    T create(I newData);
-
-    /**
-     *
-     * @return
-     */
-    T get(String id);
-
-    /**
-     *
-     * @return
-     */
-    T delete(String id);
-
-    /**
-     *
-     * @return
-     */
-    T update(I data);
+/**
+ * TODO DOC
+ */
+public enum BidStatus {
+    VALIDATION_PENDING,
+    VALIDATED,
+    INACTIVE,
+    ACTIVE,
+    REMOVED,
+    BLOCKED
 }

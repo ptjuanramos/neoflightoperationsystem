@@ -24,29 +24,33 @@
 
 package com.neoflightoperationsystemapi.controllers;
 
-public interface BaseCrudControllerInterface<I,T> {
+import com.neoflightoperationsystemapi.entities.BidEntity;
+import com.neoflightoperationsystemapi.models.ServiceResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-    /**
-     *
-     * @return
-     */
-    T create(I newData);
+@RestController
+@RequestMapping(name = "bids")
+public class BidController implements BaseCrudControllerInterface<BidEntity, ServiceResult<BidEntity>> {
 
-    /**
-     *
-     * @return
-     */
-    T get(String id);
 
-    /**
-     *
-     * @return
-     */
-    T delete(String id);
+    @Override
+    public ServiceResult<BidEntity> create(BidEntity newData) {
+        return null;
+    }
 
-    /**
-     *
-     * @return
-     */
-    T update(I data);
+    @Override
+    public ServiceResult<BidEntity> get(String id) {
+        return null;
+    }
+
+    @Override
+    public ServiceResult<BidEntity> delete(String id) {
+        return null;
+    }
+
+    @Override
+    public ServiceResult<BidEntity> update(BidEntity data) {
+        return null;
+    }
 }

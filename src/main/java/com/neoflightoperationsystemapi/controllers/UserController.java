@@ -31,32 +31,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("user")
 public class UserController implements BaseCrudControllerInterface<UserEntity, ServiceResult<UserEntity>> {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user/")
+    @PostMapping
     public ServiceResult<UserEntity> create(@RequestBody UserEntity newUser) {
         return userService.addNewUser(newUser);
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/{userId}")
     public ServiceResult<UserEntity> get(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
 
-    @GetMapping("/user/email/{email}")
-    public ServiceResult<UserEntity> getByEmail(@PathVariable String email) {
-        return userService.getUserByEmail(email);
-    }
-
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/{userId}")
     public ServiceResult delete(@PathVariable String userId) {
         return userService.removeUserById(userId);
     }
 
-    @PutMapping("/user/")
+    //TODO
+    @PutMapping
     public ServiceResult<UserEntity> update(@RequestBody UserEntity newUserData) {
         return null;
     }
