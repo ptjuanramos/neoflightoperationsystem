@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.neoflightoperationsystem.api.models.enums;
+package com.neoflightoperationsystem.flightplan.models.enums;
 
 public enum FlightplanClass {
     JEPPESEN,

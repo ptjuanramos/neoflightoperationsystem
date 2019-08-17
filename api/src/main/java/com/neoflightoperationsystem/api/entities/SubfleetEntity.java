@@ -35,10 +35,15 @@ public class SubfleetEntity {
     @GeneratedValue
     private UUID id;
 
+    @Column(nullable = false)
     private String type;
+
     private String name;
 
     @ManyToOne
+    @JoinColumn(
+            nullable = false
+    )
     private AirlineEntity airline;
 
     public UUID getId() {

@@ -39,13 +39,18 @@ public class AirlineEntity {
 
     @Column(
             length = 3,
-            unique = true
+            unique = true,
+            nullable = false
     )
     private String icao;
 
-    @Column(unique = true)
+    @Column(
+            unique = true,
+            nullable = false
+    )
     private String iata;
 
+    @Column(nullable = false)
     private String name;
 
     private String logo;

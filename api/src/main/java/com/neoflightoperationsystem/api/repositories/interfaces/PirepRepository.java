@@ -24,5 +24,5 @@
 
 package com.neoflightoperationsystem.api.repositories.interfaces;
 
-public class PirepRepository {
+public interface PirepRepository {
 }

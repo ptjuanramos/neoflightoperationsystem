@@ -24,12 +24,7 @@
 
 package com.neoflightoperationsystem.api.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity(name = "bid")
@@ -41,9 +36,17 @@ public class BidEntity {
     private UUID id;
 
     @ManyToOne
+    @JoinColumn(
+            name = "flight_id",
+            nullable = false
+    )
     private FlightEntity flightEntity;
 
     @ManyToOne
+    @JoinColumn(
+            name = "pilot_id",
+            nullable = false
+    )
     private PilotInfoEntity pilotInfoEntity;
 
     public UUID getId() {

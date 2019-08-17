@@ -29,14 +29,17 @@ import java.util.Collection;
 import java.util.UUID;
 
 @Table(name = "pilot_info")
-@Entity(name = "pilot_info")
+@Entity
 public class PilotInfoEntity {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    @OneToOne(targetEntity = UserEntity.class)
+    @OneToOne
+    @JoinColumn(
+            nullable = false
+    )
     private UserEntity user;
 
     @Column(name="first_name")
@@ -45,7 +48,11 @@ public class PilotInfoEntity {
     @Column(name="last_name")
     private String lastName;
 
-    @ManyToOne(targetEntity = AirportEntity.class)
+    @ManyToOne
+    @JoinColumn(
+            name ="current_airport_id",
+            nullable = false
+    )
     private AirportEntity currentAirport;
 
     @OneToMany

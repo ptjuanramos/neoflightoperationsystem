@@ -39,22 +39,32 @@ public class AirportEntity {
     @GeneratedValue
     private UUID id;
 
-    @Column(unique = true)
+    @Column(
+            unique = true,
+            nullable = false
+    )
     private String iata;
 
-    @Column(unique = true)
+    @Column(
+            unique = true,
+            nullable = false
+    )
     private String icao;
 
     private String name;
 
+    @Column(nullable = false)
     private String location;
 
+    @Column(nullable = false)
     private String country;
 
     private String timezone;
 
+    @Column(nullable = false)
     private float latitude;
 
+    @Column(nullable = false)
     private float longitude;
 
     public UUID getId() {

@@ -31,7 +31,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
 
-@Entity(name = "flight")
+@Entity
 @Table(name = "flight")
 public class FlightEntity {
 
@@ -40,6 +40,10 @@ public class FlightEntity {
     private UUID id;
 
     @ManyToOne
+    @JoinColumn(
+            name = "airline_id",
+            nullable = false
+    )
     private AirlineEntity airlineEntity;
 
     @Column(name = "flight_number")
@@ -52,39 +56,18 @@ public class FlightEntity {
     private String routeLeg;
 
     @ManyToOne
-    private AirportEntity departureAirport;
+    @JoinColumn(
+            name = "departure_airport_id",
+            nullable = false
+    )
+    private AirportEntity departureAirportEntity;
 
     @ManyToOne
-    private AirportEntity arrivalAirport;
-
-    @Column(name = "expected_departure_date_time")
-    private LocalDateTime expectedDepartureDateAndTime;
-
-    @Column(name = "expected_arrival_date_time")
-    private LocalDateTime expectedArrivalDateAndTime;
-
-    @Column(name = "flight_level")
-    private int flightLevel;
-
-    private long distance;
-
-    @Column(name = "flight_time")
-    private LocalTime flightTime;
-
-    /*private
-
-    private String remarks;*/
-
-    @Column(name = "actual_departure_date_time")
-    private LocalDateTime actualDepartureDateAndTime;
-
-    @Column(name = "actual_arrival_date_time")
-    private LocalDateTime actualArrivalDateAndTime;
-
-    @Column(name = "block_date_time")
-    private LocalDateTime blockDateAndTime;
-
-    private BidStatus status;
+    @JoinColumn(
+            name = "arrival_airport_id",
+            nullable = false
+    )
+    private AirportEntity arrivalAirportEntity;
 
     private boolean visible;
 
@@ -128,92 +111,20 @@ public class FlightEntity {
         this.routeLeg = routeLeg;
     }
 
-    public AirportEntity getDepartureAirport() {
-        return departureAirport;
+    public AirportEntity getDepartureAirportEntity() {
+        return departureAirportEntity;
     }
 
-    public void setDepartureAirport(AirportEntity departureAirport) {
-        this.departureAirport = departureAirport;
+    public void setDepartureAirportEntity(AirportEntity departureAirportEntity) {
+        this.departureAirportEntity = departureAirportEntity;
     }
 
-    public AirportEntity getArrivalAirport() {
-        return arrivalAirport;
+    public AirportEntity getArrivalAirportEntity() {
+        return arrivalAirportEntity;
     }
 
-    public void setArrivalAirport(AirportEntity arrivalAirport) {
-        this.arrivalAirport = arrivalAirport;
-    }
-
-    public LocalDateTime getExpectedDepartureDateAndTime() {
-        return expectedDepartureDateAndTime;
-    }
-
-    public void setExpectedDepartureDateAndTime(LocalDateTime expectedDepartureDateAndTime) {
-        this.expectedDepartureDateAndTime = expectedDepartureDateAndTime;
-    }
-
-    public LocalDateTime getExpectedArrivalDateAndTime() {
-        return expectedArrivalDateAndTime;
-    }
-
-    public void setExpectedArrivalDateAndTime(LocalDateTime expectedArrivalDateAndTime) {
-        this.expectedArrivalDateAndTime = expectedArrivalDateAndTime;
-    }
-
-    public int getFlightLevel() {
-        return flightLevel;
-    }
-
-    public void setFlightLevel(int flightLevel) {
-        this.flightLevel = flightLevel;
-    }
-
-    public long getDistance() {
-        return distance;
-    }
-
-    public void setDistance(long distance) {
-        this.distance = distance;
-    }
-
-    public LocalTime getFlightTime() {
-        return flightTime;
-    }
-
-    public void setFlightTime(LocalTime flightTime) {
-        this.flightTime = flightTime;
-    }
-
-    public LocalDateTime getActualDepartureDateAndTime() {
-        return actualDepartureDateAndTime;
-    }
-
-    public void setActualDepartureDateAndTime(LocalDateTime actualDepartureDateAndTime) {
-        this.actualDepartureDateAndTime = actualDepartureDateAndTime;
-    }
-
-    public LocalDateTime getActualArrivalDateAndTime() {
-        return actualArrivalDateAndTime;
-    }
-
-    public void setActualArrivalDateAndTime(LocalDateTime actualArrivalDateAndTime) {
-        this.actualArrivalDateAndTime = actualArrivalDateAndTime;
-    }
-
-    public LocalDateTime getBlockDateAndTime() {
-        return blockDateAndTime;
-    }
-
-    public void setBlockDateAndTime(LocalDateTime blockDateAndTime) {
-        this.blockDateAndTime = blockDateAndTime;
-    }
-
-    public BidStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(BidStatus status) {
-        this.status = status;
+    public void setArrivalAirportEntity(AirportEntity arrivalAirportEntity) {
+        this.arrivalAirportEntity = arrivalAirportEntity;
     }
 
     public boolean isVisible() {
