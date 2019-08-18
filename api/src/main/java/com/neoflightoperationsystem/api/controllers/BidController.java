@@ -26,21 +26,26 @@ package com.neoflightoperationsystem.api.controllers;
 
 import com.neoflightoperationsystem.api.models.ServiceResult;
 import com.neoflightoperationsystem.api.entities.BidEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.neoflightoperationsystem.api.services.interfaces.BidService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(name = "bids")
 public class BidController implements BaseCrudControllerInterface<BidEntity, ServiceResult<BidEntity>> {
 
+    @Autowired
+    private BidService bidService;
 
     @Override
-    public ServiceResult<BidEntity> create(BidEntity newData) {
-        return null;
+    @PostMapping
+    public ServiceResult<BidEntity> create(@RequestBody BidEntity newData) {
+        return bidService.createBid(newData);
     }
 
     @Override
-    public ServiceResult<BidEntity> get(String id) {
+    @GetMapping("/{bidId}")
+    public ServiceResult<BidEntity> get(@PathVariable String bidId) {
         return null;
     }
 

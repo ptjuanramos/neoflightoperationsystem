@@ -24,9 +24,14 @@
 
 package com.neoflightoperationsystem.api.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity(name = "airport")
 @Table(
         name = "airport",
@@ -66,76 +71,4 @@ public class AirportEntity {
 
     @Column(nullable = false)
     private float longitude;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getIata() {
-        return iata;
-    }
-
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
-
-    public String getIcao() {
-        return icao;
-    }
-
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
-    }
-
-    public float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
-    }
 }

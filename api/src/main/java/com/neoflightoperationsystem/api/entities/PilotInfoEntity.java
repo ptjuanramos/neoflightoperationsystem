@@ -24,12 +24,17 @@
 
 package com.neoflightoperationsystem.api.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Table(name = "pilot_info")
-@Entity
+@Entity(name = "pilot_info")
 public class PilotInfoEntity {
 
     @Id
@@ -57,52 +62,4 @@ public class PilotInfoEntity {
 
     @OneToMany
     private Collection<BidEntity> bids;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public AirportEntity getCurrentAirport() {
-        return currentAirport;
-    }
-
-    public void setCurrentAirport(AirportEntity currentAirport) {
-        this.currentAirport = currentAirport;
-    }
-
-    public Collection<BidEntity> getBids() {
-        return bids;
-    }
-
-    public void setBids(Collection<BidEntity> bids) {
-        this.bids = bids;
-    }
 }

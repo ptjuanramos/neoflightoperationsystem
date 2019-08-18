@@ -26,6 +26,8 @@ package com.neoflightoperationsystem.api.entities;
 
 import com.neoflightoperationsystem.flightplan.models.FlightPlan;
 import com.neoflightoperationsystem.flightplan.models.enums.FlightplanClass;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.measure.unit.Unit;
 import javax.persistence.*;
@@ -34,7 +36,9 @@ import java.time.LocalTime;
 import java.util.Collection;
 import java.util.UUID;
 
-@Entity
+@Getter
+@Setter
+@Entity(name = "flight_plan")
 @Table(name = "flight_plan")
 public class FlightPlanEntity {
 
@@ -99,140 +103,4 @@ public class FlightPlanEntity {
     private boolean isEtops;
 
     private String fuelFactor;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public FlightplanClass getFlightplanClass() {
-        return flightplanClass;
-    }
-
-    public void setFlightplanClass(FlightplanClass flightplanClass) {
-        this.flightplanClass = flightplanClass;
-    }
-
-    public Collection<AirportEntity> getAlternativeAirportEntities() {
-        return alternativeAirportEntities;
-    }
-
-    public void setAlternativeAirportEntities(Collection<AirportEntity> alternativeAirportEntities) {
-        this.alternativeAirportEntities = alternativeAirportEntities;
-    }
-
-    public String getFlightLevel() {
-        return flightLevel;
-    }
-
-    public void setFlightLevel(String flightLevel) {
-        this.flightLevel = flightLevel;
-    }
-
-    public LocalDate getFlightDate() {
-        return flightDate;
-    }
-
-    public void setFlightDate(LocalDate flightDate) {
-        this.flightDate = flightDate;
-    }
-
-    public LocalTime getDepartureTimeUTC() {
-        return departureTimeUTC;
-    }
-
-    public void setDepartureTimeUTC(LocalTime departureTimeUTC) {
-        this.departureTimeUTC = departureTimeUTC;
-    }
-
-    public LocalTime getFlightTime() {
-        return flightTime;
-    }
-
-    public void setFlightTime(LocalTime flightTime) {
-        this.flightTime = flightTime;
-    }
-
-    public LocalTime getBlockTime() {
-        return blockTime;
-    }
-
-    public void setBlockTime(LocalTime blockTime) {
-        this.blockTime = blockTime;
-    }
-
-    public long getBlockFuel() {
-        return blockFuel;
-    }
-
-    public void setBlockFuel(long blockFuel) {
-        this.blockFuel = blockFuel;
-    }
-
-    public long getExtraFuel() {
-        return extraFuel;
-    }
-
-    public void setExtraFuel(long extraFuel) {
-        this.extraFuel = extraFuel;
-    }
-
-    public long getZeroFuelWeight() {
-        return zeroFuelWeight;
-    }
-
-    public void setZeroFuelWeight(long zeroFuelWeight) {
-        this.zeroFuelWeight = zeroFuelWeight;
-    }
-
-    public long getTakeOfWeight() {
-        return takeOfWeight;
-    }
-
-    public void setTakeOfWeight(long takeOfWeight) {
-        this.takeOfWeight = takeOfWeight;
-    }
-
-    public Unit getFuelUnitOfMeasure() {
-        return fuelUnitOfMeasure;
-    }
-
-    public void setFuelUnitOfMeasure(Unit fuelUnitOfMeasure) {
-        this.fuelUnitOfMeasure = fuelUnitOfMeasure;
-    }
-
-    public String getRoute() {
-        return route;
-    }
-
-    public void setRoute(String route) {
-        this.route = route;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
-
-    public boolean isEtops() {
-        return isEtops;
-    }
-
-    public void setEtops(boolean etops) {
-        isEtops = etops;
-    }
-
-    public String getFuelFactor() {
-        return fuelFactor;
-    }
-
-    public void setFuelFactor(String fuelFactor) {
-        this.fuelFactor = fuelFactor;
-    }
 }

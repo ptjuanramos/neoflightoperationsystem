@@ -25,13 +25,17 @@
 package com.neoflightoperationsystem.api.entities;
 
 import com.neoflightoperationsystem.api.models.enums.BidStatus;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
 
-@Entity
+@Getter
+@Setter
+@Entity(name = "flight")
 @Table(name = "flight")
 public class FlightEntity {
 
@@ -70,69 +74,5 @@ public class FlightEntity {
     private AirportEntity arrivalAirportEntity;
 
     private boolean visible;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public AirlineEntity getAirlineEntity() {
-        return airlineEntity;
-    }
-
-    public void setAirlineEntity(AirlineEntity airlineEntity) {
-        this.airlineEntity = airlineEntity;
-    }
-
-    public String getFlightNumber() {
-        return flightNumber;
-    }
-
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
-    }
-
-    public String getRouteCode() {
-        return routeCode;
-    }
-
-    public void setRouteCode(String routeCode) {
-        this.routeCode = routeCode;
-    }
-
-    public String getRouteLeg() {
-        return routeLeg;
-    }
-
-    public void setRouteLeg(String routeLeg) {
-        this.routeLeg = routeLeg;
-    }
-
-    public AirportEntity getDepartureAirportEntity() {
-        return departureAirportEntity;
-    }
-
-    public void setDepartureAirportEntity(AirportEntity departureAirportEntity) {
-        this.departureAirportEntity = departureAirportEntity;
-    }
-
-    public AirportEntity getArrivalAirportEntity() {
-        return arrivalAirportEntity;
-    }
-
-    public void setArrivalAirportEntity(AirportEntity arrivalAirportEntity) {
-        this.arrivalAirportEntity = arrivalAirportEntity;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
 }
 

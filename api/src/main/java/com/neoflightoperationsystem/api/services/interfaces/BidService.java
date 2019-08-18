@@ -27,6 +27,8 @@ package com.neoflightoperationsystem.api.services.interfaces;
 import com.neoflightoperationsystem.api.models.ServiceResult;
 import com.neoflightoperationsystem.api.entities.BidEntity;
 
+import java.util.UUID;
+
 public interface BidService {
 
     /**
@@ -34,4 +36,11 @@ public interface BidService {
      * @return
      */
     ServiceResult<BidEntity> createBid(BidEntity newBidInformation);
+
+    /**
+     *
+     * @param bidId
+     * @return
+     */
+    ServiceResult<BidEntity> getBidById(UUID bidId);
 }

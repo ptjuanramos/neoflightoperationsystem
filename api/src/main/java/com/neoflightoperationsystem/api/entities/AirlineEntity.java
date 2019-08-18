@@ -24,9 +24,14 @@
 
 package com.neoflightoperationsystem.api.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity(name = "airline")
 @Table(name = "airline")
 public class AirlineEntity {
@@ -57,60 +62,4 @@ public class AirlineEntity {
 
     @Column(length = 2)
     private String country;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getIcao() {
-        return icao;
-    }
-
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
-
-    public String getIata() {
-        return iata;
-    }
-
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 }

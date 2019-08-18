@@ -24,9 +24,14 @@
 
 package com.neoflightoperationsystem.api.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity(name = "subfleet")
 @Table(name = "subfleet")
 public class SubfleetEntity {
@@ -45,36 +50,4 @@ public class SubfleetEntity {
             nullable = false
     )
     private AirlineEntity airline;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public AirlineEntity getAirline() {
-        return airline;
-    }
-
-    public void setAirline(AirlineEntity airline) {
-        this.airline = airline;
-    }
 }

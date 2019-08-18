@@ -25,10 +25,14 @@
 package com.neoflightoperationsystem.api.entities;
 
 import com.neoflightoperationsystem.api.models.enums.AircraftStatus;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity(name = "aicraft")
 @Table(name = "aicraft")
 public class AircraftEntity {
@@ -48,69 +52,5 @@ public class AircraftEntity {
     private AirportEntity currentAirport;
 
     private AircraftStatus aircraftStatus;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public SubfleetEntity getSubfleet() {
-        return subfleet;
-    }
-
-    public void setSubfleet(SubfleetEntity subfleet) {
-        this.subfleet = subfleet;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIcao() {
-        return icao;
-    }
-
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
-
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String registration) {
-        this.registration = registration;
-    }
-
-    public String getHexCode() {
-        return hexCode;
-    }
-
-    public void setHexCode(String hexCode) {
-        this.hexCode = hexCode;
-    }
-
-    public AirportEntity getCurrentAirport() {
-        return currentAirport;
-    }
-
-    public void setCurrentAirport(AirportEntity currentAirport) {
-        this.currentAirport = currentAirport;
-    }
-
-    public AircraftStatus getAircraftStatus() {
-        return aircraftStatus;
-    }
-
-    public void setAircraftStatus(AircraftStatus aircraftStatus) {
-        this.aircraftStatus = aircraftStatus;
-    }
 }
 

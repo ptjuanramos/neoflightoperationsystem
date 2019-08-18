@@ -27,13 +27,23 @@ package com.neoflightoperationsystem.api.services;
 import com.neoflightoperationsystem.api.models.ServiceResult;
 import com.neoflightoperationsystem.api.services.interfaces.BidService;
 import com.neoflightoperationsystem.api.entities.BidEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
+@Component
 public class BidServiceImpl implements BidService {
 
     @Override
     public ServiceResult<BidEntity> createBid(BidEntity newBidInformation) {
         /*UUID flightId = newBidInformation.getFlightEntity().getId();
         UUID userId = newBidInformation.*/
+        return null;
+    }
+
+    @Override
+    public ServiceResult<BidEntity> getBidById(UUID bidId) {
         return null;
     }
 }
